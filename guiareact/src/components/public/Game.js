@@ -43,7 +43,7 @@ function Board( { xIsNext, squares, onPlay }) {
                 <div className="fs-3">
                     <div  className="status card-title">{status}</div>
                 </div>
-                <div className="container card-body text-centered mb-4">
+                <div className="container card-body text-centered">
                     <div  className="row justify-content-center board-row">
                         <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
                         <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
@@ -101,11 +101,11 @@ export function Game() {
             <div className="game">
                 <div className="container">
                     <div className="row">
-                        <div className="game-board col">
+                        <div className="game-board col-8 float-start">
                             <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
                         </div>
-                        <div  className="game-info col">
-                            <ol className="list-group list-group-numbered">{moves}</ol>
+                        <div  className="game-info col-4">
+                            <ol className="list-group list-group-numbered rounded-4">{moves}</ol>
                         </div>
                     </div>
                 </div>
@@ -122,7 +122,7 @@ function calculateWinner(squares) {
         [1, 4, 7],
         [2, 5, 8],
         [0, 4, 8],
-        [2, 4, 6],
+        [2, 4, 6]
     ];
     for (let i = 0; i < lines.length; i++) {
         const [a, b, c] = lines[i];
