@@ -15,6 +15,4 @@ import { Footer } from './components/public/Footer'
                     </div>
                     );
         }
-
 export default App;
-
