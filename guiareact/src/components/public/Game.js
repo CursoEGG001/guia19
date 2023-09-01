@@ -8,7 +8,7 @@ import { useState } from 'react';
 function Square( { value, onSquareClick }) {
     return (
             <div className="col m-2 justify-content-center">
-                <button className="square focus-ring p-5 border rounded-2" onClick={onSquareClick}>
+                <button className="square focus-ring p-5 text-bold display-3 border rounded-2" onClick={onSquareClick}>
                     {value}
                 </button>
             </div>
@@ -83,7 +83,7 @@ export function Game() {
 
     const moves = history.map((squares, move) => {
         let description;
-        let count='';
+        let count = '';
         if (move > 0) {
             description = 'Ir hacia la jugada ';
             count = move;
@@ -94,41 +94,41 @@ export function Game() {
                 <li className="list-group-item" key={move}>
                     <button className="btn btn-secondary" onClick={() => jumpTo(move)}>{description}<span className="badge bg-warning rounded-pill">{count}</span></button>
                 </li>
-                );
-    });
+                        );
+            });
 
-    return (
-            <div className="game">
-                <div className="container">
-                    <div className="row">
-                        <div className="game-board col-8 float-start">
-                            <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
-                        </div>
-                        <div  className="game-info col-4">
-                            <ol className="list-group list-group-numbered rounded-4">{moves}</ol>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            );
-}
-
-function calculateWinner(squares) {
-    const lines = [
-        [0, 1, 2],
-        [3, 4, 5],
-        [6, 7, 8],
-        [0, 3, 6],
-        [1, 4, 7],
-        [2, 5, 8],
-        [0, 4, 8],
-        [2, 4, 6]
-    ];
-    for (let i = 0; i < lines.length; i++) {
-        const [a, b, c] = lines[i];
-        if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-            return squares[a];
+            return (
+                            <div className="game">
+                                <div className="container">
+                                    <div className="row">
+                                        <div className="game-board col-8 float-start">
+                                            <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
+                                        </div>
+                                        <div  className="game-info col-4">
+                                            <ol className="list-group list-group-numbered rounded-4">{moves}</ol>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    );
         }
-    }
-    return null;
-}
+
+        function calculateWinner(squares) {
+            const lines = [
+                [0, 1, 2],
+                [3, 4, 5],
+                [6, 7, 8],
+                [0, 3, 6],
+                [1, 4, 7],
+                [2, 5, 8],
+                [0, 4, 8],
+                [2, 4, 6]
+            ];
+            for (let i = 0; i < lines.length; i++) {
+                const [a, b, c] = lines[i];
+                if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+                    return squares[a];
+                }
+            }
+            return null;
+        }
