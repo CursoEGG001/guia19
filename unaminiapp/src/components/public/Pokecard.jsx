@@ -26,8 +26,8 @@ const Pokecard = (props) => {
 
     }, []);
     return (
-            <div className='col cols-auto border border-dark-subtle rounded-4'>
-                <div className='card focus-ring'>
+            <div className='col focus-ring border border-dark-subtle rounded-4'>
+                <div className='card'>
                     <div className='card-body bg-secondary-subtle rounded-3'>
                         <CardTitle title={props.name}/>
                         <br/>
