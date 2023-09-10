@@ -1,7 +1,7 @@
 import { useState, useEffect }
 from 'react'
 import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import viteLogo from './vite.svg'
 import './App.css'
 import PokedexServicio from './services/pokemon-api'
 import Pokecard from './components/public/Pokecard'
@@ -26,22 +26,25 @@ import Pokecard from './components/public/Pokecard'
                         </a>
                     </div>
                     <h1>Vite + React</h1>
-                    <div>
-                        <div className='card'>
-                            <button onClick={() => setContador((contador) => contador + 1)}>
-                                Contador es {contador}
-                            </button>
-                            <p>
-                                Edit <code>src/App.jsx</code> and save to test HMR
-                            </p>
-                            {pokemon.map((d,i) => (
-                                                        <div key={i}>
-                                                            <Pokecard
-                                                                name={d.name}
-                                                                pokemon={d.url}
-                                                                />
-                                                        </div>
-                                    ))}
+                    <div className='appcard'>
+                        <button onClick={() => setContador((contador) => contador + 1)}>
+                            Contador es {contador}
+                        </button>
+                        <p>
+                            Edit <code>src/App.jsx</code> and save to test HMR
+                        </p>
+                    </div>
+                    <div className='album mb-2 g-2'>
+                    
+                        <div className='container'>
+                            {pokemon.map((d, i) => (
+                                                <div className='row p-2' key={i}>
+                                                    <Pokecard
+                                                        name={d.name}
+                                                        pokemon={d.url}
+                                                        />
+                                                </div>
+                                            ))}
                         </div>
                     </div>
                     <p className="read-the-docs">

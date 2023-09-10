@@ -7,7 +7,7 @@ export const API_POKEMON = {
 
 URL: "http://pokeapi.co/api/v2",
     CHARACTERS: function () {
-        return `${this.URL}/pokemon?limit=60&offset=${Math.floor(Math.random()*56+1)}}`;
+        return `${this.URL}/pokemon?limit=30&offset=0`;
     },
 
     CHARACTERS_BY_ID: function (id) {
