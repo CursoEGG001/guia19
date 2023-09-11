@@ -9,7 +9,7 @@ import React from 'react';
 export const CardTitle = ({ title }) => {
     return (
             <div className='card-title border-primary-subtle'>
-                <h1>{title}</h1>
+                <h2>{title}</h2>
             </div>
             );
 };

@@ -26,16 +26,19 @@ const Pokecard = (props) => {
 
     }, []);
     return (
-            <div className='col focus-ring border border-dark-subtle rounded-4'>
-                <div className='card'>
-                    <div className='card-body bg-secondary-subtle rounded-3'>
-                        <CardTitle title={props.name}/>
+            <div className='container'>
+                <div className='card border p-2'>
+                    <div className='card-body bg-secondary-subtle rounded-2'>
+                        <div className='card-img-overlay opacity-25'>
+                            <CardTitle title={props.name}/>
+                        </div>
                         <br/>
                         <img className="card-img-top" src={figPok} alt={props.pokemon}/>
                         <CardBody info={tarjeta}/>
                     </div>
                 </div>
             </div>
+
 
             );
 };

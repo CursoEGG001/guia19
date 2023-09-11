@@ -34,17 +34,20 @@ import Pokecard from './components/public/Pokecard'
                             Edit <code>src/App.jsx</code> and save to test HMR
                         </p>
                     </div>
-                    <div className='album mb-2 g-2'>
+                    <div className='album'>
                     
-                        <div className='container'>
-                            {pokemon.map((d, i) => (
-                                                <div className='row p-2' key={i}>
-                                                    <Pokecard
-                                                        name={d.name}
-                                                        pokemon={d.url}
-                                                        />
-                                                </div>
-                                            ))}
+                        <div className='container mb-2'>
+                            <div className='row align-items-start justify-content-center'>
+                                {pokemon.map((d, i) => (
+                                                            <div className='col col-3 border border-dark-subtle rounded-4 g-1' key={i}>
+                                                                <Pokecard
+                                                                    name={d.name}
+                                                                    pokemon={d.url}
+                                                                    />
+                                                            </div>
+
+                                                ))}
+                            </div>
                         </div>
                     </div>
                     <p className="read-the-docs">
