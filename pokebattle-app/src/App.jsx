@@ -8,37 +8,37 @@ function App() {
     useEffect(() => {
         jugadores();
         jugadores2();
-    }, [])
+    }, []);
 
-    var vectorF = []
-    const vector1 = []
+    var vectorF = [];
+    const vector1 = [];
     const i = 0;
     const getRandomInt = (min, max) => {
         return Math.floor(Math.random() * (max - min)) + min;
-    }
+    };
 
     const fetchData = async () => {
         try {
             for (let i = 0; i <= 21; i++) {
                 const random = getRandomInt(1, 151);
-                const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${random}`)
+                const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${random}`);
                 const data = await res.json();
                 vectorF.push(data);
             }
 //     var v3= cargarData(vector1) 
         } catch (error) {
-            console.log(error.message)
+            console.log(error.message);
         }
-        return vectorF
-    }
+        return vectorF;
+    };
 
     const jugadores = async() => {
-        setJugador1((await fetchData()).slice(0, 10))
+        setJugador1((await fetchData()).slice(0, 10));
 
-    }
+    };
     const jugadores2 = async() => {
-        setJugador2((await fetchData()).slice(11, 21))
-    }
+        setJugador2((await fetchData()).slice(11, 21));
+    };
 
 
 //const miArray = [1, 2, 3, 4, 5];
@@ -52,93 +52,71 @@ function App() {
         switch (opc) {
             case "hp":
                 if (jugador2[0].stats[0].base_stat > jugador1[0].stats[0].base_stat) {
-                    jugador2.concat(jugador1.shift());
-                    //  jugador1.shift()
+                    jugador2.push(jugador1.shift());
                 } else {
-                    jugador1.concat(jugador2.shift());
-                    // jugador2.shift()
+                    jugador1.push(jugador2.shift());
                 }
-                console.log(jugador1);
-                console.log(jugador2);
                 break;
             case "attack":
                 if (jugador2[0].stats[1].base_stat > jugador1[0].stats[1].base_stat) {
-                    jugador2.concat(jugador1.shift());
-                    // jugador1.shift()
+                    jugador2.push(jugador1.shift());
                 } else {
-                    jugador1.concat(jugador2.shift());
-                    //  jugador2.shift()
+                    jugador1.push(jugador2.shift());
                 }
-                console.log(jugador1);
-                console.log(jugador2);
                 break;
             case "defense":
                 if (jugador2[0].stats[2].base_stat > jugador1[0].stats[2].base_stat) {
-                    jugador2.concat(jugador1.shift());
-                    //  jugador1.shift()
+                    jugador2.push(jugador1.shift());
                 } else {
-                    jugador1.concat(jugador2.shift());
-                    //   jugador2.shift()
+                    jugador1.push(jugador2.shift());
                 }
-                console.log(jugador1);
-                console.log(jugador2);
                 break;
             case "special-attack":
                 if (jugador2[0].stats[3].base_stat > jugador1[0].stats[3].base_stat) {
-                    jugador2.concat(jugador1.shift());
-                    //  jugador1.shift()
+                    jugador2.push(jugador1.shift());
                 } else {
-                    jugador1.concat(jugador2.shift());
-                    // jugador2.shift()
+                    jugador1.push(jugador2.shift());
                 }
-                console.log(jugador1);
-                console.log(jugador2);
                 break;
             case "special-defense":
                 if (jugador2[0].stats[4].base_stat > jugador1[0].stats[4].base_stat) {
-                    jugador2.concat(jugador1.shift());
-                    //  jugador1.shift()
+                    jugador2.push(jugador1.shift());
                 } else {
-                    jugador1.concat(jugador2.shift());
-                    // jugador2.shift()
+                    jugador1.push(jugador2.shift());
                 }
-                console.log(jugador1);
-                console.log(jugador2);
                 break;
             case "speed":
                 if (jugador2[0].stats[5].base_stat > jugador1[0].stats[5].base_stat) {
-                    jugador2.concat(jugador1.shift());
-                    //  jugador1.shift()
+                    jugador2.push(jugador1.shift());
                 } else {
-                    jugador1.concat(jugador2.shift());
-                    //   jugador2.shift()
+                    jugador1.push(jugador2.shift());
                 }
-                console.log(jugador1);
-                console.log(jugador2);
                 break;
                 // Otros casos...
             default:
                 // Manejar un caso por defecto si es necesario
                 break;
         }
+        console.log(jugador1);
+        console.log(jugador2);
     }
 
 
     const ComparaCartas = (evento) => {
-        const elemento = evento.target
+        const elemento = evento.target;
         //console.log(jugador1[0].stats[0].stat.name)
-        let infoSelector = elemento.attributes.name.value
+        let infoSelector = elemento.attributes.name.value;
         for (var i = 0, max = jugador1[0].stats.length; i < max; i++) {
             if (jugador1[0].stats[i].stat.name === infoSelector) {
-                console.table(infoSelector, jugador1[0].stats[i].base_stat, jugador2[0].stats[i].base_stat)
-                console.log(jugador1)
-                console.log(jugador2)
-                lucha(jugador1, jugador2, infoSelector)
+                console.table(infoSelector, jugador1[0].stats[i].base_stat, jugador2[0].stats[i].base_stat);
+                console.log(jugador1);
+                console.log(jugador2);
+                lucha(jugador1, jugador2, infoSelector);
             }
 
         }
 
-    }
+    };
 
 
 
@@ -225,7 +203,7 @@ function App() {
                 <span>{jugador2.lenght}</span>
                 </>)}
             </div>
-            )
+            );
 }
 
 export default App;
