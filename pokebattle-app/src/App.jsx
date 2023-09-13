@@ -1,56 +1,142 @@
 import { useEffect, useState }
 from 'react';
 import './App.css';
-        function App() {
+function App() {
 //const [pokemones, setPokemones]=useState([]);
-        const [jugador1, setJugador1] = useState([]);
-                const [jugador2, setJugador2] = useState([]);
-                useEffect(() => {
-                jugadores();
-                        jugadores2();
-                }, [])
+    const [jugador1, setJugador1] = useState([]);
+    const [jugador2, setJugador2] = useState([]);
+    useEffect(() => {
+        jugadores();
+        jugadores2();
+    }, [])
 
-                var vectorF = []
-                const vector1 = []
-                const i = 0;
-                const getRandomInt = (min, max) => {
+    var vectorF = []
+    const vector1 = []
+    const i = 0;
+    const getRandomInt = (min, max) => {
         return Math.floor(Math.random() * (max - min)) + min;
-        }
+    }
 
-        const fetchData = async () => {
+    const fetchData = async () => {
         try {
-        for (let i = 0; i < 20; i++) {
-        const random = getRandomInt(1, 151);
+            for (let i = 0; i <= 21; i++) {
+                const random = getRandomInt(1, 151);
                 const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${random}`)
                 const data = await res.json();
                 vectorF.push(data);
-        }
+            }
 //     var v3= cargarData(vector1) 
         } catch (error) {
-        console.log(error.message)
+            console.log(error.message)
         }
         return vectorF
-        }
+    }
 
-        const jugadores = async() => {
-        setJugador1((await fetchData()).slice(0, 9))
+    const jugadores = async() => {
+        setJugador1((await fetchData()).slice(0, 10))
 
-        }
-        const jugadores2 = async() => {
-        setJugador2((await fetchData()).slice(10, 19))
-        }
+    }
+    const jugadores2 = async() => {
+        setJugador2((await fetchData()).slice(11, 21))
+    }
 
-        const ComparaCartas = (evento) => {
+
+//const miArray = [1, 2, 3, 4, 5];
+//
+//const primerElemento = miArray.shift(); // Elimina y devuelve 1
+//
+//console.log(miArray); // [2, 3, 4, 5]
+//console.log(primerElemento); // 1
+
+    function lucha(jugador1, jugador2, opc) {
+        switch (opc) {
+            case "hp":
+                if (jugador2[0].stats[0].base_stat > jugador1[0].stats[0].base_stat) {
+                    jugador2.push(jugador1.shift());
+                    //  jugador1.shift()
+                } else {
+                    jugador1.push(jugador2.shift());
+                    // jugador2.shift()
+                }
+                console.log(jugador1);
+                console.log(jugador2);
+                break;
+            case "attack":
+                if (jugador2[0].stats[1].base_stat > jugador1[0].stats[1].base_stat) {
+                    jugador2.push(jugador1.shift());
+                    // jugador1.shift()
+                } else {
+                    jugador1.push(jugador2.shift());
+                    //  jugador2.shift()
+                }
+                console.log(jugador1);
+                console.log(jugador2);
+                break;
+            case "defense":
+                if (jugador2[0].stats[2].base_stat > jugador1[0].stats[2].base_stat) {
+                    jugador2.push(jugador1.shift());
+                    //  jugador1.shift()
+                } else {
+                    jugador1.push(jugador2.shift());
+                    //   jugador2.shift()
+                }
+                console.log(jugador1);
+                console.log(jugador2);
+                break;
+            case "special-attack":
+                if (jugador2[0].stats[3].base_stat > jugador1[0].stats[3].base_stat) {
+                    jugador2.push(jugador1.shift());
+                    //  jugador1.shift()
+                } else {
+                    jugador1.push(jugador2.shift());
+                    jugador2.shift()
+                }
+                console.log(jugador1);
+                console.log(jugador2);
+                break;
+            case "special-defense":
+                if (jugador2[0].stats[4].base_stat > jugador1[0].stats[4].base_stat) {
+                    jugador2.push(jugador1.shift());
+                    //  jugador1.shift()
+                } else {
+                    jugador1.push(jugador2.splice(0, 1));
+                    jugador2.shift()
+                }
+                console.log(jugador1);
+                console.log(jugador2);
+                break;
+            case "speed":
+                if (jugador2[0].stats[5].base_stat > jugador1[0].stats[5].base_stat) {
+                    jugador2.push(jugador1.shift());
+                    //  jugador1.shift()
+                } else {
+                    jugador1.push(jugador2.shift());
+                    //   jugador2.shift()
+                }
+                console.log(jugador1);
+                console.log(jugador2);
+                break;
+                // Otros casos...
+            default:
+                // Manejar un caso por defecto si es necesario
+                break;
+        }
+    }
+
+
+    const ComparaCartas = (evento) => {
         const elemento = evento.target
-                //console.log(jugador1[0].stats[0].stat.name)
-                let infoSelector = elemento.attributes.name.value
-                for (var i = 0, max = jugador1[0].stats.length; i < max; i++) {
-        if (jugador1[0].stats[i].stat.name === infoSelector) {
-        console.table(infoSelector, jugador1[0].stats[i].base_stat, jugador2[0].stats[i].base_stat)
-        }
-        }
+        //console.log(jugador1[0].stats[0].stat.name)
+        let infoSelector = elemento.attributes.name.value
+        for (var i = 0, max = jugador1[0].stats.length; i < max; i++) {
+            if (jugador1[0].stats[i].stat.name === infoSelector) {
+                console.table(infoSelector, jugador1[0].stats[i].base_stat, jugador2[0].stats[i].base_stat)
+                lucha(jugador1, jugador2, infoSelector)
+            }
 
         }
+
+    }
 
 
 
@@ -77,67 +163,67 @@ import './App.css';
 //    return vector;}
 
 
-        console.log(jugador1);
-                return (
-                        <div className="App">
-    <h1>Jugador 1</h1>
-    {jugador1.map((jugador1) => <>
-    <p key='{jugador1.id}'>{jugador1.name}</p>
-    <br></br>
-    <img src = {jugador1.sprites.other.dream_world.front_default} alt = {jugador1.name} />
-    <span>{jugador1.lenght}</span>
-    <ul>
-        <li>{jugador1.stats[0].stat.name}:{jugador1.stats[0].base_stat}</li>
-        <li>{jugador1.stats[1].stat.name}:{jugador1.stats[1].base_stat}</li>
-        <li>{jugador1.stats[2].stat.name}:{jugador1.stats[2].base_stat}</li>
-        <li>{jugador1.stats[3].stat.name}:{jugador1.stats[3].base_stat}</li>
-        <li>{jugador1.stats[4].stat.name}:{jugador1.stats[4].base_stat}</li>
-        <li>{jugador1.stats[5].stat.name}:{jugador1.stats[5].base_stat}</li>
-    </ul>
-    <span>{jugador1.lenght}</span>
-    </>)}
-    <div>
-        <table>
-            <tbody>
-                <tr>
-                    <td><input name="hp" type="submit" value="HP" onClick={ComparaCartas}/></td>
-                </tr>
-                <tr>
-                    <td ><input name="attack" type="submit" value="Ataque" onClick={ComparaCartas} /></td>
-                    <td ></td>
-                </tr>
-                <tr>
-                    <td ><input name="defense" type="submit" value="Defensa" onClick={ComparaCartas} /></td>
-                </tr>
-                <tr>
-                    <td ><input name="special-attack" type="submit" value="Ataque Especial" onClick={ComparaCartas}/></td>
-                </tr>
-                <tr>
-                    <td ><input name="special-defense" type="submit" value="Defensa Especial" onClick={ComparaCartas}/></td>
-                </tr>
-                <tr>
-                    <td ><input name="speed" type="button" value="Velocidad" onClick={ComparaCartas}/></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <h1>Jugador 2</h1>
-    {jugador2.map((jugador2) => <>
-    <p key='{jugador2.id}'>{jugador2.name}</p>
-    <br></br>
-    <img src = {jugador2.sprites.other.dream_world.front_default} alt = {jugador2.name} />
-    <ul>
-        <li>{jugador2.stats[0].stat.name}:{jugador2.stats[0].base_stat}</li>
-        <li>{jugador2.stats[1].stat.name}:{jugador2.stats[1].base_stat}</li>
-        <li>{jugador2.stats[2].stat.name}:{jugador2.stats[2].base_stat}</li>
-        <li>{jugador2.stats[3].stat.name}:{jugador2.stats[3].base_stat}</li>
-        <li>{jugador2.stats[4].stat.name}:{jugador2.stats[4].base_stat}</li>
-        <li>{jugador2.stats[5].stat.name}:{jugador2.stats[5].base_stat}</li>
-    </ul>
-    <span>{jugador2.lenght}</span>
-    </>)}
-</div>
-                        )
-                }
+
+    return (
+            <div className="App">
+                <h1>Jugador 1</h1>
+                {jugador1.map((jugador1) => <>
+                <p key='{jugador1.id}'>{jugador1.name}</p>
+                <br></br>
+                <img src = {jugador1.sprites.other.dream_world.front_default} alt = {jugador1.name} />
+                <span>{jugador1.lenght}</span>
+                <ul>
+                    <li>{jugador1.stats[0].stat.name}:{jugador1.stats[0].base_stat}</li>
+                    <li>{jugador1.stats[1].stat.name}:{jugador1.stats[1].base_stat}</li>
+                    <li>{jugador1.stats[2].stat.name}:{jugador1.stats[2].base_stat}</li>
+                    <li>{jugador1.stats[3].stat.name}:{jugador1.stats[3].base_stat}</li>
+                    <li>{jugador1.stats[4].stat.name}:{jugador1.stats[4].base_stat}</li>
+                    <li>{jugador1.stats[5].stat.name}:{jugador1.stats[5].base_stat}</li>
+                </ul>
+                <span>{jugador1.lenght}</span>
+                </>)}
+                <div>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td><input name="hp" type="submit" value="HP" onClick={ComparaCartas}/></td>
+                            </tr>
+                            <tr>
+                                <td ><input name="attack" type="submit" value="Ataque" onClick={ComparaCartas} /></td>
+                                <td ></td>
+                            </tr>
+                            <tr>
+                                <td ><input name="defense" type="submit" value="Defensa" onClick={ComparaCartas} /></td>
+                            </tr>
+                            <tr>
+                                <td ><input name="special-attack" type="submit" value="Ataque Especial" onClick={ComparaCartas}/></td>
+                            </tr>
+                            <tr>
+                                <td ><input name="special-defense" type="submit" value="Defensa Especial" onClick={ComparaCartas}/></td>
+                            </tr>
+                            <tr>
+                                <td ><input name="speed" type="button" value="Velocidad" onClick={ComparaCartas}/></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <h1>Jugador 2</h1>
+                {jugador2.map((jugador2) => <>
+                <p key='{jugador2.id}'>{jugador2.name}</p>
+                <br></br>
+                <img src = {jugador2.sprites.other.dream_world.front_default} alt = {jugador2.name} />
+                <ul>
+                    <li>{jugador2.stats[0].stat.name}:{jugador2.stats[0].base_stat}</li>
+                    <li>{jugador2.stats[1].stat.name}:{jugador2.stats[1].base_stat}</li>
+                    <li>{jugador2.stats[2].stat.name}:{jugador2.stats[2].base_stat}</li>
+                    <li>{jugador2.stats[3].stat.name}:{jugador2.stats[3].base_stat}</li>
+                    <li>{jugador2.stats[4].stat.name}:{jugador2.stats[4].base_stat}</li>
+                    <li>{jugador2.stats[5].stat.name}:{jugador2.stats[5].base_stat}</li>
+                </ul>
+                <span>{jugador2.lenght}</span>
+                </>)}
+            </div>
+            )
+}
 
 export default App;
