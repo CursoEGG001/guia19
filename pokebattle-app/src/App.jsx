@@ -146,25 +146,44 @@ function App() {
 
     return (
             <div className="App">
-                <h1>Jugador 1</h1>
-                {jugador1.map((jugador1) => <>
-                <p key='{jugador1.id}'>{jugador1.name}</p>
-                <br></br>
-                <img src = {jugador1.sprites.other.dream_world.front_default} alt = {jugador1.name} />
-                <span>{jugador1.lenght}</span>
-                <ul>
-                    <li>{jugador1.stats[0].stat.name}:{jugador1.stats[0].base_stat}</li>
-                    <li>{jugador1.stats[1].stat.name}:{jugador1.stats[1].base_stat}</li>
-                    <li>{jugador1.stats[2].stat.name}:{jugador1.stats[2].base_stat}</li>
-                    <li>{jugador1.stats[3].stat.name}:{jugador1.stats[3].base_stat}</li>
-                    <li>{jugador1.stats[4].stat.name}:{jugador1.stats[4].base_stat}</li>
-                    <li>{jugador1.stats[5].stat.name}:{jugador1.stats[5].base_stat}</li>
-                </ul>
-                <span>{jugador1.lenght}</span>
-                </>)}
+            
                 <div>
                     <table>
                         <tbody>
+                            <tr>
+                                <td rowSpan='0'><h1>Jugador 1</h1>
+                                    {jugador1.map((jugador1) => <>
+                                    <p key='{jugador1.id}'>{jugador1.name}</p>
+                                    <br></br>
+                                    <img src = {jugador1.sprites.other.dream_world.front_default} alt = {jugador1.name} width="64px" height="48px" />
+                                    <span>{jugador1.lenght}</span>
+                                    <ul>
+                                        <li key='{jugador1.stats[0].stat.name}'>{jugador1.stats[0].stat.name}:{jugador1.stats[0].base_stat}</li>
+                                        <li key='{jugador1.stats[1].stat.name}'>{jugador1.stats[1].stat.name}:{jugador1.stats[1].base_stat}</li>
+                                        <li key='{jugador1.stats[2].stat.name}'>{jugador1.stats[2].stat.name}:{jugador1.stats[2].base_stat}</li>
+                                        <li key='{jugador1.stats[3].stat.name}'>{jugador1.stats[3].stat.name}:{jugador1.stats[3].base_stat}</li>
+                                        <li key='{jugador1.stats[4].stat.name}'>{jugador1.stats[4].stat.name}:{jugador1.stats[4].base_stat}</li>
+                                        <li key='{jugador1.stats[5].stat.name}'>{jugador1.stats[5].stat.name}:{jugador1.stats[5].base_stat}</li>
+                                    </ul>
+                                    <span>{jugador1.lenght}</span>
+                                    </>)}</td>
+                            <td><h3>Acciones</h3></td>
+                                <td rowSpan='0'><h1>Jugador 2</h1>
+                                    {jugador2.map((jugador2) => <>
+                                    <p key='{jugador2.id}'>{jugador2.name}</p>
+                                    <br></br>
+                                    <img src = {jugador2.sprites.other.dream_world.front_default} alt = {jugador2.name} width="64px" height="48px" />
+                                    <ul>
+                                        <li>{jugador2.stats[0].stat.name}:{jugador2.stats[0].base_stat}</li>
+                                        <li>{jugador2.stats[1].stat.name}:{jugador2.stats[1].base_stat}</li>
+                                        <li>{jugador2.stats[2].stat.name}:{jugador2.stats[2].base_stat}</li>
+                                        <li>{jugador2.stats[3].stat.name}:{jugador2.stats[3].base_stat}</li>
+                                        <li>{jugador2.stats[4].stat.name}:{jugador2.stats[4].base_stat}</li>
+                                        <li>{jugador2.stats[5].stat.name}:{jugador2.stats[5].base_stat}</li>
+                                    </ul>
+                                    <span>{jugador2.lenght}</span>
+                                    </>)}</td>
+                            </tr>
                             <tr>
                                 <td><input name="hp" type="submit" value="HP" onClick={ComparaCartas}/></td>
                             </tr>
@@ -187,21 +206,7 @@ function App() {
                         </tbody>
                     </table>
                 </div>
-                <h1>Jugador 2</h1>
-                {jugador2.map((jugador2) => <>
-                <p key='{jugador2.id}'>{jugador2.name}</p>
-                <br></br>
-                <img src = {jugador2.sprites.other.dream_world.front_default} alt = {jugador2.name} />
-                <ul>
-                    <li>{jugador2.stats[0].stat.name}:{jugador2.stats[0].base_stat}</li>
-                    <li>{jugador2.stats[1].stat.name}:{jugador2.stats[1].base_stat}</li>
-                    <li>{jugador2.stats[2].stat.name}:{jugador2.stats[2].base_stat}</li>
-                    <li>{jugador2.stats[3].stat.name}:{jugador2.stats[3].base_stat}</li>
-                    <li>{jugador2.stats[4].stat.name}:{jugador2.stats[4].base_stat}</li>
-                    <li>{jugador2.stats[5].stat.name}:{jugador2.stats[5].base_stat}</li>
-                </ul>
-                <span>{jugador2.lenght}</span>
-                </>)}
+            
             </div>
             );
 }
