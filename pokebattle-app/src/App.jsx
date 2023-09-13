@@ -49,71 +49,90 @@ function App() {
 //console.log(primerElemento); // 1
 
     function lucha(jugador1, jugador2, opc) {
-        switch (opc) {
-            case "hp":
-                if (jugador2[0].stats[0].base_stat > jugador1[0].stats[0].base_stat) {
-                    jugador2.push(jugador1.shift());
-                } else {
-                    jugador1.push(jugador2.shift());
-                }
-                break;
-            case "attack":
-                if (jugador2[0].stats[1].base_stat > jugador1[0].stats[1].base_stat) {
-                    jugador2.push(jugador1.shift());
-                } else {
-                    jugador1.push(jugador2.shift());
-                }
-                break;
-            case "defense":
-                if (jugador2[0].stats[2].base_stat > jugador1[0].stats[2].base_stat) {
-                    jugador2.push(jugador1.shift());
-                } else {
-                    jugador1.push(jugador2.shift());
-                }
-                break;
-            case "special-attack":
-                if (jugador2[0].stats[3].base_stat > jugador1[0].stats[3].base_stat) {
-                    jugador2.push(jugador1.shift());
-                } else {
-                    jugador1.push(jugador2.shift());
-                }
-                break;
-            case "special-defense":
-                if (jugador2[0].stats[4].base_stat > jugador1[0].stats[4].base_stat) {
-                    jugador2.push(jugador1.shift());
-                } else {
-                    jugador1.push(jugador2.shift());
-                }
-                break;
-            case "speed":
-                if (jugador2[0].stats[5].base_stat > jugador1[0].stats[5].base_stat) {
-                    jugador2.push(jugador1.shift());
-                } else {
-                    jugador1.push(jugador2.shift());
-                }
-                break;
-                // Otros casos...
-            default:
-                // Manejar un caso por defecto si es necesario
-                break;
+        try {
+            switch (opc) {
+                case "hp":
+                    if (jugador2[0].stats[0].base_stat > jugador1[0].stats[0].base_stat) {
+                        jugador2.push(jugador1.shift());
+                    } else {
+                        jugador1.push(jugador2.shift());
+                    }
+                    break;
+                case "attack":
+                    if (jugador2[0].stats[1].base_stat > jugador1[0].stats[1].base_stat) {
+                        jugador2.push(jugador1.shift());
+                    } else {
+                        jugador1.push(jugador2.shift());
+                    }
+                    break;
+                case "defense":
+                    if (jugador2[0].stats[2].base_stat > jugador1[0].stats[2].base_stat) {
+                        jugador2.push(jugador1.shift());
+                    } else {
+                        jugador1.push(jugador2.shift());
+                    }
+                    break;
+                case "special-attack":
+                    if (jugador2[0].stats[3].base_stat > jugador1[0].stats[3].base_stat) {
+                        jugador2.push(jugador1.shift());
+                    } else {
+                        jugador1.push(jugador2.shift());
+                    }
+                    break;
+                case "special-defense":
+                    if (jugador2[0].stats[4].base_stat > jugador1[0].stats[4].base_stat) {
+                        jugador2.push(jugador1.shift());
+                    } else {
+                        jugador1.push(jugador2.shift());
+                    }
+                    break;
+                case "speed":
+                    if (jugador2[0].stats[5].base_stat > jugador1[0].stats[5].base_stat) {
+                        jugador2.push(jugador1.shift());
+                    } else {
+                        jugador1.push(jugador2.shift());
+                    }
+                    break;
+                    // Otros casos...
+                default:
+                    // Manejar un caso por defecto si es necesario
+                    break;
+            }
+            setJugador1(jugador1);
+            setJugador2(jugador2);
+        } catch (e) {
+            console.log("Ya no se puede operar")
+            console.log(e.message)
         }
-        console.log(jugador1);
-        console.log(jugador2);
+
     }
 
 
     const ComparaCartas = (evento) => {
-        const elemento = evento.target;
-        //console.log(jugador1[0].stats[0].stat.name)
-        let infoSelector = elemento.attributes.name.value;
-        for (var i = 0, max = jugador1[0].stats.length; i < max; i++) {
-            if (jugador1[0].stats[i].stat.name === infoSelector) {
-                console.table(infoSelector, jugador1[0].stats[i].base_stat, jugador2[0].stats[i].base_stat);
-                console.log(jugador1);
-                console.log(jugador2);
-                lucha(jugador1, jugador2, infoSelector);
+        try {
+            const elemento = evento.target;
+            //console.log(jugador1[0].stats[0].stat.name)
+            let infoSelector = elemento.attributes.name.value;
+            for (var i = 0, max = jugador1[0].stats.length; i < max; i++) {
+                if (jugador1[0].stats[i].stat.name === infoSelector) {
+                    console.table(infoSelector, jugador1[0].stats[i].base_stat, jugador2[0].stats[i].base_stat);
+                    console.log(jugador1);
+                    console.log(jugador2);
+                    if (!(jugador1.length === 0) || !(jugador1.length === 0)) {
+                        lucha(jugador1, jugador2, infoSelector);
+                    } else {
+                        if (jugador1.length === 0) {
+                            console.log("Gana el jugador 2")
+                        } else {
+                            console.log("Gana el jugador 1")
+                        }
+                    }
+                }
+                
             }
-
+        } catch (e) {
+            console.log("no hay mas cartas de algún jugador")
+            console.log(e.message)
         }
 
     };
@@ -153,7 +172,7 @@ function App() {
                             <tr>
                                 <td rowSpan='0'><h1>Jugador 1</h1>
                                     {jugador1.map((jugador1) => <>
-                                    <p ><h3>{jugador1.name}</h3></p>
+                                    <h3>{jugador1.name}</h3>
                                     <br></br>
                                     <img src = {jugador1.sprites.other.dream_world.front_default} alt = {jugador1.name} width="64px" height="48px" />
                                     <span>{jugador1.lenght}</span>
@@ -170,7 +189,7 @@ function App() {
                                 <td><h3>Acciones</h3></td>
                                 <td rowSpan='0'><h1>Jugador 2</h1>
                                     {jugador2.map((jugador2) => <>
-                                    <p ><h3>{jugador2.name}</h3></p>
+                                    <h3>{jugador2.name}</h3>
                                     <br></br>
                                     <img src = {jugador2.sprites.other.dream_world.front_default} alt = {jugador2.name} width="64px" height="48px" />
                                     <ul>
