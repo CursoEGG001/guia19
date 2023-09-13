@@ -52,10 +52,10 @@ function App() {
         switch (opc) {
             case "hp":
                 if (jugador2[0].stats[0].base_stat > jugador1[0].stats[0].base_stat) {
-                    jugador2.push(jugador1.shift());
+                    jugador2.concat(jugador1.shift());
                     //  jugador1.shift()
                 } else {
-                    jugador1.push(jugador2.shift());
+                    jugador1.concat(jugador2.shift());
                     // jugador2.shift()
                 }
                 console.log(jugador1);
@@ -63,10 +63,10 @@ function App() {
                 break;
             case "attack":
                 if (jugador2[0].stats[1].base_stat > jugador1[0].stats[1].base_stat) {
-                    jugador2.push(jugador1.shift());
+                    jugador2.concat(jugador1.shift());
                     // jugador1.shift()
                 } else {
-                    jugador1.push(jugador2.shift());
+                    jugador1.concat(jugador2.shift());
                     //  jugador2.shift()
                 }
                 console.log(jugador1);
@@ -74,10 +74,10 @@ function App() {
                 break;
             case "defense":
                 if (jugador2[0].stats[2].base_stat > jugador1[0].stats[2].base_stat) {
-                    jugador2.push(jugador1.shift());
+                    jugador2.concat(jugador1.shift());
                     //  jugador1.shift()
                 } else {
-                    jugador1.push(jugador2.shift());
+                    jugador1.concat(jugador2.shift());
                     //   jugador2.shift()
                 }
                 console.log(jugador1);
@@ -85,32 +85,32 @@ function App() {
                 break;
             case "special-attack":
                 if (jugador2[0].stats[3].base_stat > jugador1[0].stats[3].base_stat) {
-                    jugador2.push(jugador1.shift());
+                    jugador2.concat(jugador1.shift());
                     //  jugador1.shift()
                 } else {
-                    jugador1.push(jugador2.shift());
-                    jugador2.shift()
+                    jugador1.concat(jugador2.shift());
+                    // jugador2.shift()
                 }
                 console.log(jugador1);
                 console.log(jugador2);
                 break;
             case "special-defense":
                 if (jugador2[0].stats[4].base_stat > jugador1[0].stats[4].base_stat) {
-                    jugador2.push(jugador1.shift());
+                    jugador2.concat(jugador1.shift());
                     //  jugador1.shift()
                 } else {
-                    jugador1.push(jugador2.splice(0, 1));
-                    jugador2.shift()
+                    jugador1.concat(jugador2.shift());
+                    // jugador2.shift()
                 }
                 console.log(jugador1);
                 console.log(jugador2);
                 break;
             case "speed":
                 if (jugador2[0].stats[5].base_stat > jugador1[0].stats[5].base_stat) {
-                    jugador2.push(jugador1.shift());
+                    jugador2.concat(jugador1.shift());
                     //  jugador1.shift()
                 } else {
-                    jugador1.push(jugador2.shift());
+                    jugador1.concat(jugador2.shift());
                     //   jugador2.shift()
                 }
                 console.log(jugador1);
@@ -131,6 +131,8 @@ function App() {
         for (var i = 0, max = jugador1[0].stats.length; i < max; i++) {
             if (jugador1[0].stats[i].stat.name === infoSelector) {
                 console.table(infoSelector, jugador1[0].stats[i].base_stat, jugador2[0].stats[i].base_stat)
+                console.log(jugador1)
+                console.log(jugador2)
                 lucha(jugador1, jugador2, infoSelector)
             }
 
