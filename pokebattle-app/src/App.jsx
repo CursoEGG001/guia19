@@ -98,7 +98,7 @@ function App() {
                     // Manejar un caso por defecto si es necesario
                     break;
             }
-            
+
             setJugador1(jugador1);
             setJugador2(jugador2);
         } catch (e) {
@@ -114,13 +114,15 @@ function App() {
             const elemento = evento.target;
             //console.log(jugador1[0].stats[0].stat.name)
             let infoSelector = elemento.attributes.name.value;
-            if (!((jugador1.length === 0) || (jugador2.length === 0))) {
+            if ((jugador1.length > 0) && (jugador2.length > 0)) {
                 for (var i = 0, max = jugador1[0].stats.length; i < max; i++) {
                     if (jugador1[0].stats[i].stat.name === infoSelector) {
                         console.table(infoSelector, jugador1[0].stats[i].base_stat, jugador2[0].stats[i].base_stat);
                         console.log(jugador1);
                         console.log(jugador2);
                         lucha(jugador1, jugador2, infoSelector);
+                        console.log(jugador1);
+                        console.log(jugador2);
                     }
                 }
             } else {
