@@ -17,23 +17,29 @@ import Pokecard from './components/public/Pokecard'
             }, []);
             return (
                     <>
-                    <div>
-                        <a href="https://vitejs.dev" target="_blank">
-                            <img src={viteLogo} className="logo" alt="Vite logo" />
-                        </a>
-                        <a href="https://react.dev" target="_blank">
-                            <img src={reactLogo} className="logo react" alt="React logo" />
-                        </a>
-                    </div>
-                    <h1>Vite + React</h1>
-                    <div className='appcard'>
-                        <button onClick={() => setContador((contador) => contador + 1)}>
-                            Contador es {contador}
-                        </button>
-                        <p>
-                            Edit <code>src/App.jsx</code> and save to test HMR
-                        </p>
-                    </div>
+                    <header className='navbar sticky-top'>
+                        <nav className='container'>
+                            <div className='container-fluid'>
+                                <div>
+                                    <a className='navbar-brand' href="https://vitejs.dev" target="_blank">
+                                        <img src={viteLogo} className="logo d-inline-block align-text-top" alt="Vite logo"  />
+                                    </a>
+                                    <a className='navbar-brand' href="https://react.dev" target="_blank">
+                                        <img src={reactLogo} className="logo react d-inline-block align-text-top" alt="React logo"  />
+                                    </a>
+                                </div>
+                                <h1>Vite + React</h1>
+                                <div className='appcard d-inline-block align-text-top'>
+                                    <button onClick={() => setContador((contador) => contador + 1)}>
+                                        Contador es {contador}
+                                    </button>
+                                    <p>
+                                        Edit <code>src/App.jsx</code> and save to test HMR
+                                    </p>
+                                </div>
+                            </div>
+                        </nav>
+                    </header>
                     <div className='album'>
                         <div className='container mb-2'>
                             <div className='row align-items-start justify-content-center'>
