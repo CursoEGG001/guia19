@@ -1,6 +1,6 @@
-#PokeAPI Implementada con componentes de React
+# PokeAPI Implementada con componentes de React
 
-Nada interesante fuera de usar Vite para generar el documento inicial para trabajar.
+## Nada interesante fuera de usar Vite para generar el documento inicial para trabajar.
 
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh

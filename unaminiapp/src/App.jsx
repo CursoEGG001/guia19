@@ -35,17 +35,15 @@ import Pokecard from './components/public/Pokecard'
                         </p>
                     </div>
                     <div className='album'>
-                    
                         <div className='container mb-2'>
                             <div className='row align-items-start justify-content-center'>
-                                {pokemon.map((d, i) => (
-                                                            <div className='col col-3 border border-dark-subtle rounded-4 g-1' key={i}>
-                                                                <Pokecard
-                                                                    name={d.name}
-                                                                    pokemon={d.url}
-                                                                    />
-                                                            </div>
-
+                                {pokemon.filter((item, indice) => indice < contador).map((d, i) => (
+                                                <div className='col col-auto border border-dark-subtle rounded-4 g-1' key={i}>
+                                                    <Pokecard
+                                                        name={d.name}
+                                                        pokemon={d.url}
+                                                        />
+                                                </div>
                                                 ))}
                             </div>
                         </div>
