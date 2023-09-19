@@ -2,7 +2,7 @@ import { useEffect, useState }
 from 'react';
 import './App.css';
 function App() {
-//const [pokemones, setPokemones]=useState([]);
+
     const [jugador1, setJugador1] = useState([]);
     const [jugador2, setJugador2] = useState([]);
     useEffect(() => {
@@ -25,7 +25,7 @@ function App() {
                 const data = await res.json();
                 vectorF.push(data);
             }
-//     var v3= cargarData(vector1) 
+
         } catch (error) {
             console.log(error.message);
         }
@@ -39,14 +39,6 @@ function App() {
     const jugadores2 = async() => {
         setJugador2((await fetchData()).slice(11, 21));
     };
-
-
-//const miArray = [1, 2, 3, 4, 5];
-//
-//const primerElemento = miArray.shift(); // Elimina y devuelve 1
-//
-//console.log(miArray); // [2, 3, 4, 5]
-//console.log(primerElemento); // 1
 
     function lucha(jugador1, jugador2, opc) {
         try {
@@ -98,7 +90,8 @@ function App() {
                     // Manejar un caso por defecto si es necesario
                     break;
             }
-
+            shuffle(jugador1)
+            shuffle(jugador2)
             setJugador1(jugador1);
             setJugador2(jugador2);
         } catch (e) {
@@ -108,11 +101,9 @@ function App() {
 
     }
 
-
     const ComparaCartas = (evento) => {
         try {
             const elemento = evento.target;
-            //console.log(jugador1[0].stats[0].stat.name)
             let infoSelector = elemento.attributes.name.value;
             if ((jugador1.length > 0) && (jugador2.length > 0)) {
                 for (var i = 0, max = jugador1[0].stats.length; i < max; i++) {
@@ -132,7 +123,6 @@ function App() {
                     console.log("Gana el jugador 1")
                 }
 
-
             }
         } catch (e) {
             console.log("no hay mas cartas de algún jugador")
@@ -141,41 +131,32 @@ function App() {
 
     };
 
+    function shuffle(array) {
+        let currentIndex = array.length, randomIndex;
 
+        // While there remain elements to shuffle.
+        while (currentIndex > 0) {
 
+            // Pick a remaining element.
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex--;
 
+            // And swap it with the current element.
+            [array[currentIndex], array[randomIndex]] = [
+                array[randomIndex], array[currentIndex]];
+        }
 
-//const cargarData=(vector) =>{
-//    console.log(vector);
-//    const template=document.querySelector(".foto").setAttribute('src', vector[0].sprites.other.dream_world.front_default);
-//    const name=document.querySelector(".name").innerHTML=`${vector[0].name} <br> id=${vector[0].id}`;
-//    const template2=document.querySelector(".foto2").setAttribute('src', vector[1].sprites.other.dream_world.front_default);
-//    const name2=document.querySelector(".name2").innerHTML=`${vector[1].name} <br> id=${vector[1].id}`;
-//    const name3=document.querySelector(".cantidadC1").innerHTML="Quedan " + vector.length+  " cartas disponibles";
-//    const name4=document.querySelector(".cantidadC2").innerHTML="Quedan " + vector.length+  " cartas disponibles";
-//   var vectorA=vector.slice(0,5);
-//  
-//    console.log(vectorA)
-//   var  vectorB=vector.slice(5,10)
-//  
-//    console.log(vectorB)
-//   vectorB=vectorB.concat(vectorA.slice(0,1))
-//   console.log(vectorB)
-//    vectorA.shift();
-//    console.log(vectorA)
-//    return vector;}
-
-
+        return array;
+    }
 
     return (
             <div className="App">
-            
                 <div>
                     <table>
                         <tbody>
                             <tr>
                                 <td rowSpan='0'><h1>Jugador 1</h1>
-                                    {jugador1.map((jugador1) => <>
+                                    {jugador1.filter((a, i) => i == 0).map((jugador1) => <>
                                     <h3>{jugador1.name}</h3>
                                     <br></br>
                                     <img src = {jugador1.sprites.other.dream_world.front_default} alt = {jugador1.name} width="64px" height="48px" />
@@ -192,7 +173,7 @@ function App() {
                                     </>)}</td>
                                 <td><h3>Acciones</h3></td>
                                 <td rowSpan='0'><h1>Jugador 2</h1>
-                                    {jugador2.map((jugador2) => <>
+                                    {jugador2.filter((a, i) => i == 0).map((jugador2) => <>
                                     <h3>{jugador2.name}</h3>
                                     <br></br>
                                     <img src = {jugador2.sprites.other.dream_world.front_default} alt = {jugador2.name} width="64px" height="48px" />
