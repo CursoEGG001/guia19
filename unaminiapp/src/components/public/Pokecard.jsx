@@ -24,7 +24,7 @@ const Pokecard = (props) => {
                 })
                 .catch((error) => console.log(error));
 
-    }, []);
+    }, [tarjeta]);
     return (
             <div className='container'>
                 <div className='card border p-2'>

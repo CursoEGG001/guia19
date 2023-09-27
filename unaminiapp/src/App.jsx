@@ -14,21 +14,21 @@ import Pokecard from './components/public/Pokecard'
                 const charactersAPI = PokedexServicio.getAllCharacters()
                         .then((data) => setPokemon(data.results))
                         .catch((error) => console.log(error));
-            }, []);
+            }, [pokemon]);
             return (
                     <>
                     <header className='navbar sticky-top'>
                         <nav className='container'>
-                            <div className='container-fluid'>
-                                <div>
-                                    <a className='navbar-brand' href="https://vitejs.dev" target="_blank">
-                                        <img src={viteLogo} className="logo d-inline-block align-text-top" alt="Vite logo"  />
+                            <div className='d-inline-block'>
+                                <div className='d-inline-block'>
+                                    <a className='navbar-brand d-inline-block' href="https://vitejs.dev" target="_blank">
+                                        <img src={viteLogo} className="logo align-text-top" alt="Vite logo"  />
                                     </a>
                                     <a className='navbar-brand' href="https://react.dev" target="_blank">
-                                        <img src={reactLogo} className="logo react d-inline-block align-text-top" alt="React logo"  />
+                                        <img src={reactLogo} className="logo react align-text-top" alt="React logo"  />
                                     </a>
                                 </div>
-                                <h1>Vite + React</h1>
+                                <h1 className='d-inline-block align-text-top'>Vite + React</h1>
                                 <div className='appcard d-inline-block align-text-top'>
                                     <button onClick={() => setContador((contador) => contador + 1)}>
                                         Contador es {contador}
